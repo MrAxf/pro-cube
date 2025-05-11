@@ -12,6 +12,9 @@ import {
   string,
   toMaxValue,
   toMinValue,
+  transform,
+  trim,
+  union,
 } from 'valibot'
 
 enum CubeSize {
@@ -21,14 +24,23 @@ enum CubeSize {
   '5x5' = 5,
 }
 
+const numberOrString = union([
+  number(),
+  pipe(
+    string(),
+    trim(),
+    transform((input) => Number(input))
+  ),
+])
+
 export const idParameterSchema = object({
-  id: pipe(number(), integer(), minValue(1)),
+  id: pipe(numberOrString, integer(), minValue(1)),
 })
 
 export const paginationSchema = object({
-  page: optional(pipe(number(), integer(), toMinValue(1)), 1),
+  page: optional(pipe(numberOrString, integer(), toMinValue(1)), 1),
   pageSize: optional(
-    pipe(number(), integer(), toMinValue(10), toMaxValue(50)),
+    pipe(numberOrString, integer(), toMinValue(10), toMaxValue(50)),
     10
   ),
 })

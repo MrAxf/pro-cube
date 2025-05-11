@@ -1,5 +1,5 @@
 <template>
-  <web-cube class="block size-full"></web-cube>
+  <web-cube></web-cube>
 </template>
 
 <script setup lang="ts">

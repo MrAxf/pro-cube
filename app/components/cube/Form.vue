@@ -319,21 +319,17 @@
         </template>
       </form.Field>
     </div>
-    <div class="flex w-full gap-8">
-      <Button
-        type="button"
-        variant="secondary"
-        class="grow"
-        @click="form.reset()"
-      >
-        Reset
+    <div class="flex w-full justify-end gap-8">
+      <Button type="button" variant="secondary" @click="form.reset()">
+        <Undo />
+        Reset values
       </Button>
       <Button
         type="submit"
-        class="grow"
         :disabled="form.state.isSubmitting || form.state.isValidating"
       >
-        Submit
+        <Save />
+        Save cube
       </Button>
     </div>
   </form>
@@ -341,9 +337,7 @@
 
 <script setup lang="ts">
 import { useForm } from '@tanstack/vue-form'
-import type { InferInput } from 'valibot'
-
-type CubeForm = InferInput<typeof cubeSchema>
+import { Save, Undo } from 'lucide-vue-next'
 
 const props = withDefaults(
   defineProps<{

@@ -9,17 +9,16 @@ export default defineEventHandler(async (event) => {
     parser(paginationSchema)
   )
 
-  const total = (await db.select({ count: sql`count(*)` }).from(cubes)) as {
-    count: number
-  }[]
+  const total = await db.$count(cubes)
 
   const data = await db
     .select()
     .from(cubes)
+    .orderBy(sql`${cubes.createdAt} DESC`)
     .limit(pageSize)
     .offset((page - 1) * pageSize)
 
-  const totalPages = Math.ceil(total[0].count / pageSize)
+  const totalPages = Math.ceil(total / pageSize)
   const nextPage = page < totalPages ? page + 1 : null
   const nextPageUrl = nextPage
     ? `${event.node.req.url?.split('?')[0]}?page=${nextPage}&pageSize=${pageSize}`
@@ -32,7 +31,7 @@ export default defineEventHandler(async (event) => {
   return {
     data,
     meta: {
-      total: total[0].count,
+      total: total,
       page,
       next_page: nextPage,
       prev_page: prevPage,

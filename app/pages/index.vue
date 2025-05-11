@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col p-4">
-    <CubeForm class="max-w-xl" />
-  </div>
+  <WebCube class="block h-[calc(100dvh-3.75rem)] w-full" />
 </template>
+
+<script setup lang="ts"></script>

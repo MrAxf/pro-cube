@@ -128,4 +128,17 @@
     font-family: var(--font-main);
     font-size: 16px;
   }
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-md;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
 }

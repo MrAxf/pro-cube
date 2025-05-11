@@ -1,6 +1,6 @@
 <template>
-  <Primitive v-bind="forwarded" class="flex flex-col gap-2">
-    <Label v-if="props.label" :for="props.id">
+  <Primitive v-bind="forwarded" class="flex flex-col gap-4">
+    <Label v-if="props.label" :for="props.id" class="-mb-2">
       {{ props.label }}
     </Label>
     <slot :id="props.id" />
@@ -18,7 +18,7 @@ import { Primitive, type PrimitiveProps } from 'reka-ui'
 const props = withDefaults(
   defineProps<
     PrimitiveProps & {
-      id: string
+      id?: string
       label?: string
       help?: string
       error?: string
@@ -30,7 +30,7 @@ const props = withDefaults(
 )
 
 defineSlots<{
-  default(props: { id: string }): any
+  default(props: { id?: string }): any
 }>()
 
 const forwarded = computed(() => {

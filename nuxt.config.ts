@@ -7,17 +7,29 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   devtools: { enabled: true },
+
+  runtimeConfig: {
+    libsqlUrl: '',
+    libsqlAuthToken: undefined,
+  },
+
+  nitro: {
+    experimental: {
+      tasks: true,
+    },
+  },
+
+  css: ['~/assets/css/tailwind.css'],
+
+  /**Modules */
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
     'shadcn-nuxt',
     '@nuxtjs/color-mode',
     'motion-v/nuxt',
+    '@clerk/nuxt',
   ],
-  css: ['~/assets/css/tailwind.css'],
-  vite: {
-    plugins: [tailwindcss()],
-  },
 
   shadcn: {
     prefix: '',
@@ -31,16 +43,23 @@ export default defineNuxtConfig({
     storage: 'cookie',
   },
 
+  clerk: {
+    skipServerMiddleware: true,
+  },
+
+  /**Vite & Vue */
+  vite: {
+    plugins: [tailwindcss()],
+    // server: {
+    //   allowedHosts: ['*.ngrok-free.app'],
+    // },
+  },
+
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => {
         return ['web-cube'].includes(tag)
       },
     },
-  },
-
-  runtimeConfig: {
-    libsqlUrl: '',
-    libsqlAuthToken: undefined,
   },
 })

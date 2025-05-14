@@ -3,17 +3,26 @@ import { cubes } from '~~/server/database/schema'
 
 export default defineEventHandler(async (event) => {
   const db = useDrizzle()
+  const { userId } = event.context.auth()
+
+  if (!userId) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: 'Unauthorized: User not signed in',
+    })
+  }
 
   const { page, pageSize } = await getValidatedQuery(
     event,
     parser(paginationSchema)
   )
 
-  const total = await db.$count(cubes)
+  const total = await db.$count(cubes, eq(cubes.userId, userId))
 
   const data = await db
     .select()
     .from(cubes)
+    .where(eq(cubes.userId, userId))
     .orderBy(sql`${cubes.createdAt} DESC`)
     .limit(pageSize)
     .offset((page - 1) * pageSize)

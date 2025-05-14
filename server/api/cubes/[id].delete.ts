@@ -3,6 +3,15 @@ import { cubes } from '~~/server/database/schema'
 
 export default defineEventHandler(async (event) => {
   const db = useDrizzle()
+  const { userId } = event.context.auth()
+
+  if (!userId) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: 'Unauthorized: User not signed in',
+    })
+  }
+
   const { id } = await getValidatedRouterParams(
     event,
     parser(idParameterSchema)
@@ -11,7 +20,7 @@ export default defineEventHandler(async (event) => {
   const cube = await db
     .select()
     .from(cubes)
-    .where(eq(cubes.id, Number(id)))
+    .where(and(eq(cubes.id, Number(id)), eq(cubes.userId, userId)))
     .limit(1)
     .get()
 

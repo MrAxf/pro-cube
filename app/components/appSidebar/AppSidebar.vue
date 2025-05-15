@@ -15,6 +15,9 @@
       <AppSidebarCubeList class="grow" @edit="openCubeFormDialog($event)" />
     </SidebarContent>
     <SidebarFooter class="flex flex-col">
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
       <Separator class="my-2" />
       <small class="text-center"> &copy; 2025 Axford </small></SidebarFooter
     >

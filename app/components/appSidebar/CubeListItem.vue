@@ -3,7 +3,7 @@
     variant="ghost"
     class="group/cube-btn w-full justify-between overflow-hidden rounded-none"
     as="div"
-    @click.prevent.stop="console.log('Clicked cube', cube.id)"
+    @click.prevent.stop="onClick"
   >
     <span>
       {{ cube.name }}
@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { Edit, Trash } from 'lucide-vue-next'
 
-defineProps<{
+const props = defineProps<{
   cube: Cube
 }>()
 
@@ -43,4 +43,10 @@ const emit = defineEmits<{
   edit: [cube: Cube]
   delete: [cube: Cube]
 }>()
+
+const cubeStore = useCubeStore()
+
+function onClick() {
+  cubeStore.cube = props.cube
+}
 </script>

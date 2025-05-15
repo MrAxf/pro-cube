@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'motion-v/nuxt',
     '@clerk/nuxt',
+    '@pinia/nuxt',
   ],
 
   shadcn: {
@@ -45,6 +46,10 @@ export default defineNuxtConfig({
 
   clerk: {
     skipServerMiddleware: true,
+  },
+
+  pinia: {
+    storesDirs: ['./app/stores/**'],
   },
 
   /**Vite & Vue */

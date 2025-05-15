@@ -13,9 +13,6 @@ export default defineEventHandler(async (event) => {
       await db.insert(users).values({
         id: evt.data.id,
         email: evt.data.email_addresses[0].email_address,
-        lastSignInAt: evt.data.last_sign_in_at
-          ? new Date(evt.data.last_sign_in_at)
-          : null,
         createdAt: new Date(evt.data.created_at),
         updatedAt: new Date(evt.data.updated_at),
       })
@@ -24,14 +21,18 @@ export default defineEventHandler(async (event) => {
         .update(users)
         .set({
           email: evt.data.email_addresses[0].email_address,
-          lastSignInAt: evt.data.last_sign_in_at
-            ? new Date(evt.data.last_sign_in_at)
-            : null,
           updatedAt: new Date(evt.data.updated_at),
         })
         .where(eq(users.id, evt.data.id))
     } else if (eventType === 'user.deleted') {
       await db.delete(users).where(eq(users.id, evt.data.id!))
+    } else if (eventType === 'session.created') {
+      await db
+        .update(users)
+        .set({
+          lastSignInAt: new Date(evt.data.created_at),
+        })
+        .where(eq(users.id, evt.data.user_id))
     }
 
     return 'Webhook received'

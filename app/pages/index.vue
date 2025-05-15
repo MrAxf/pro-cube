@@ -1,15 +1,17 @@
 <template>
-  <header>
-    <SignedOut>
-      <SignInButton />
-    </SignedOut>
-    <SignedIn>
-      <UserButton />
-    </SignedIn>
-  </header>
-  <NuxtLink to="/dashboard">
-    <h1 class="text-3xl font-bold">Welcome to Nuxt 3</h1>
-  </NuxtLink>
+  <div>
+    <header>
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </header>
+    <Button as-child>
+      <NuxtLink to="/dashboard">Dashboard </NuxtLink>
+    </Button>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -8,10 +8,17 @@
     leave-from-class="opacity-100"
     leave-to-class="opacity-0"
   >
-    <MainCube
+    <CubeWrapper
       :key="cubeStore.cube?.id"
       class="block h-[calc(100dvh-3.75rem)] w-full"
       :size="cubeStore.cube?.size"
+      :color-background="cubeStore.cube?.baseColor"
+      :color-up="cubeStore.cube?.upColor"
+      :color-down="cubeStore.cube?.downColor"
+      :color-left="cubeStore.cube?.leftColor"
+      :color-right="cubeStore.cube?.rightColor"
+      :color-front="cubeStore.cube?.frontColor"
+      :color-back="cubeStore.cube?.backColor"
     />
   </Transition>
   <!-- <pre>{{ subeStore.cube }}</pre>

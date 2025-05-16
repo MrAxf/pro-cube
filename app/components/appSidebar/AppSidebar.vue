@@ -2,7 +2,6 @@
   <Sidebar v-bind="props">
     <SidebarHeader class="flex flex-col">
       <h1 class="py-4 text-center text-2xl font-bold">PRO CUBE</h1>
-
       <Separator class="my-2" />
     </SidebarHeader>
     <SidebarContent class="overflow-hidden">

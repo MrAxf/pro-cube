@@ -19,6 +19,13 @@ export default defineNuxtConfig({
     },
   },
 
+  /**Head & css */
+  app: {
+    head: {
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' }],
+    },
+  },
+
   css: ['~/assets/css/tailwind.css'],
 
   /**Modules */

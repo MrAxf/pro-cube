@@ -110,27 +110,6 @@
                 >
               </Label>
             </div>
-            <div class="flex items-center space-x-2">
-              <RadioGroupItem
-                :id="`${field.name}.5`"
-                :value="5"
-                class="sr-only"
-              />
-              <Label :for="`${field.name}.5`">
-                <Card
-                  :class="[
-                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground cursor-pointer transition-colors',
-                    {
-                      'border-accent-foreground': field.state.value === 5,
-                    },
-                  ]"
-                  ><CardContent class="flex flex-col gap-[1lh]">
-                    <span class="text-xl font-bold">5x5</span>
-                    <span>A 5x5 cube</span>
-                  </CardContent></Card
-                >
-              </Label>
-            </div>
           </RadioGroup>
         </FieldContainer>
       </template>
@@ -355,13 +334,13 @@ const emit = defineEmits<{
 const form = useForm({
   defaultValues: {
     size: 3,
-    baseColor: '#242424',
-    upColor: '#BA0C2F',
-    downColor: '#FE5000',
-    frontColor: '#ffffff',
-    backColor: '#FFD700',
-    leftColor: '#003DA5',
-    rightColor: '#009A44',
+    baseColor: CUBE_DEFAULT_COLORS.baseColor,
+    upColor: CUBE_DEFAULT_COLORS.upColor,
+    downColor: CUBE_DEFAULT_COLORS.downColor,
+    frontColor: CUBE_DEFAULT_COLORS.frontColor,
+    backColor: CUBE_DEFAULT_COLORS.backColor,
+    leftColor: CUBE_DEFAULT_COLORS.leftColor,
+    rightColor: CUBE_DEFAULT_COLORS.rightColor,
     ...props.defaultValues,
   } as CubeForm,
   validators: {

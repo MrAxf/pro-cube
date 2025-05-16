@@ -1,5 +1,5 @@
 <template>
-  <div class="flex size-full flex-col">
+  <div class="flex size-full w-full flex-col overflow-hidden">
     <div class="w-full grow">
       <Transition
         enter-active-class="transition-opacity duration-250 abslute inset-0"
@@ -25,18 +25,14 @@
         />
       </Transition>
     </div>
-    <pre class="h-30 overflow-auto">
-      {{ historyPointer }}
-      {{ history }}
-    </pre>
     <div class="flex flex-row items-center justify-center gap-2 p-2">
-      <Button variant="outline" size="sm" @click="undo"> Undo </Button>
-      <Button variant="outline" size="sm" @click="redo"> Redo </Button>
+      <CubeHistory />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { CubeHistory } from '#components'
 import type { RotationEvent, rotate as _rotate } from '@web-cube/web-cube'
 
 const cubeStore = useCubeStore()

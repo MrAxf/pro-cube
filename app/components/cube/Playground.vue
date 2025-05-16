@@ -2,12 +2,13 @@
   <div class="flex size-full w-full flex-col overflow-hidden">
     <div class="w-full grow">
       <Transition
-        enter-active-class="transition-opacity duration-250 abslute inset-0"
+        enter-active-class="transition-opacity duration-150 abslute inset-0"
         enter-from-class="opacity-0"
         enter-to-class="opacity-100"
-        leave-active-class="transition-opacity duration-250 abslute inset-0"
+        leave-active-class="transition-opacity duration-150 abslute inset-0"
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
+        mode="out-in"
       >
         <CubeWrapper
           :key="cube?.id"
@@ -33,7 +34,11 @@
 
 <script setup lang="ts">
 import { CubeHistory } from '#components'
-import type { RotationEvent, rotate as _rotate } from '@web-cube/web-cube'
+import type {
+  RotationEvent,
+  enqueueRotations as _enqueueRotations,
+  rotate as _rotate,
+} from '@web-cube/web-cube'
 
 const cubeStore = useCubeStore()
 const cube = computed(() => cubeStore.cube)
@@ -46,10 +51,22 @@ async function rotate(options: Parameters<typeof _rotate>[1]) {
   await $cubeWrapper.value.rotate(options)
 }
 
-const { addToHistory, undo, redo, history, historyPointer } = provideCube(
+async function enqueueRotations(
+  options: Parameters<typeof _enqueueRotations>[1]
+) {
+  if (!$cubeWrapper.value) return
+
+  await $cubeWrapper.value.enqueueRotations(options)
+}
+
+const { addToHistory } = provideCube({
   cube,
-  rotate
-)
+  rotateFn: rotate,
+  enqueueRotationsFn: enqueueRotations,
+  isRotating() {
+    return $cubeWrapper.value?.isRotating ?? false
+  },
+})
 
 function afterRotate(e: RotationEvent) {
   if (

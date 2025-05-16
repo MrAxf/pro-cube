@@ -1,14 +1,16 @@
 <template>
   <div class="h-dvh w-dvw">
-    <NuxtLoadingIndicator />
-    <NuxtRouteAnnouncer />
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-    <ClientOnly>
-      <Toaster />
-      <OverlayProvider />
-    </ClientOnly>
+    <TooltipProvider>
+      <NuxtLoadingIndicator />
+      <NuxtRouteAnnouncer />
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+      <ClientOnly>
+        <Toaster />
+        <OverlayProvider />
+      </ClientOnly>
+    </TooltipProvider>
   </div>
 </template>
 

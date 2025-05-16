@@ -8,6 +8,7 @@ import {
   type StateChangeEvent,
   type WebCube,
   define,
+  enqueueRotations,
   rotate,
 } from '@web-cube/web-cube'
 import type { HTMLAttributes } from 'vue'
@@ -104,6 +105,13 @@ defineExpose({
   async rotate(options: Parameters<typeof rotate>[1]) {
     if (!$cube.value) return false
     return rotate($cube.value, options)
+  },
+  async enqueueRotations(options: Parameters<typeof enqueueRotations>[1]) {
+    if (!$cube.value) return false
+    return enqueueRotations($cube.value, options)
+  },
+  get isRotating() {
+    return $cube.value?.isRotating ?? false
   },
 })
 </script>

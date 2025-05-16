@@ -699,7 +699,6 @@ const props = withDefaults(
     colorUp: CUBE_DEFAULT_COLORS.upColor,
     colorFront: CUBE_DEFAULT_COLORS.frontColor,
     colorLeft: CUBE_DEFAULT_COLORS.leftColor,
-    axis: 'X',
     rotate: 'forward',
   }
 )

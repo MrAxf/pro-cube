@@ -1,23 +1,37 @@
-import type { rotate as _rotate } from '@web-cube/web-cube'
+import type {
+  enqueueRotations as _enqueueRotations,
+  rotate as _rotate,
+} from '@web-cube/web-cube'
 
 export type CubeContext = {
   cube: ComputedRef<Cube | null>
   history: Ref<CubeHistory>
   historyPointer: ComputedRef<number>
   rotateFn: (options: Parameters<typeof _rotate>[1]) => Promise<void>
+  enqueueRotationsFn: (
+    options: Parameters<typeof _enqueueRotations>[1]
+  ) => Promise<void>
   addToHistory: (cubeHistoryItem: CubeHistoryItem) => void
   undo: () => Promise<void>
   redo: () => Promise<void>
+  goToHistoryPointer: (index: number) => Promise<void>
 }
 
 const cubeContextKey = '_CUBE_CONTEXT_KEY_'
 
 const HISTORY_LIMIT = 200
 
-export function provideCube(
-  cube: ComputedRef<Cube | null>,
-  rotateFn: (options: Parameters<typeof _rotate>[1]) => Promise<void>
-): CubeContext {
+export function provideCube({
+  cube,
+  rotateFn,
+  enqueueRotationsFn,
+  isRotating,
+}: {
+  cube: ComputedRef<Cube | null>
+  rotateFn: CubeContext['rotateFn']
+  enqueueRotationsFn: CubeContext['enqueueRotationsFn']
+  isRotating: () => boolean
+}): CubeContext {
   const history = ref<CubeHistory>([])
   const historyPointer = ref(0)
 
@@ -40,6 +54,7 @@ export function provideCube(
 
   async function undo() {
     if (
+      !isRotating() &&
       historyPointer.value > 0 &&
       historyPointer.value <= history.value.length
     ) {
@@ -52,6 +67,7 @@ export function provideCube(
           angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
           axis: item.axis,
           backwards: item.angle > 0,
+          speed: 100,
         })
       } else {
         await rotateFn({
@@ -60,6 +76,7 @@ export function provideCube(
           angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
           axis: item.axis,
           backwards: item.angle > 0,
+          speed: 100,
         })
       }
     }
@@ -67,6 +84,7 @@ export function provideCube(
 
   async function redo() {
     if (
+      !isRotating() &&
       historyPointer.value >= 0 &&
       historyPointer.value < history.value.length
     ) {
@@ -79,6 +97,7 @@ export function provideCube(
           angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
           axis: item.axis,
           backwards: item.angle < 0,
+          speed: 100,
         })
       } else {
         await rotateFn({
@@ -87,8 +106,48 @@ export function provideCube(
           angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
           axis: item.axis,
           backwards: item.angle < 0,
+          speed: 100,
         })
       }
+    }
+  }
+
+  async function goToHistoryPointer(index: number) {
+    if (
+      !isRotating() &&
+      index >= 0 &&
+      index <= history.value.length &&
+      index !== historyPointer.value
+    ) {
+      const from = Math.min(index, historyPointer.value)
+      const to = Math.max(index, historyPointer.value)
+      const historyItems = history.value.slice(from, to) as CubeHistory
+      const isBackwards = index < historyPointer.value
+      if (isBackwards) historyItems.reverse()
+
+      await enqueueRotationsFn(
+        historyItems.map((item) => {
+          if (item.type === 'cube') {
+            return {
+              type: 'cube',
+              angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
+              axis: item.axis,
+              backwards: isBackwards ? item.angle > 0 : item.angle < 0,
+              speed: 100,
+            }
+          } else {
+            return {
+              type: 'layer',
+              layer: item.layer!,
+              angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
+              axis: item.axis,
+              backwards: isBackwards ? item.angle > 0 : item.angle < 0,
+              speed: 100,
+            }
+          }
+        })
+      )
+      historyPointer.value = index
     }
   }
 
@@ -97,9 +156,11 @@ export function provideCube(
     history,
     historyPointer: computed(() => historyPointer.value),
     rotateFn,
+    enqueueRotationsFn,
     addToHistory,
     undo,
     redo,
+    goToHistoryPointer,
   })
 
   return {
@@ -107,9 +168,11 @@ export function provideCube(
     history,
     historyPointer: computed(() => historyPointer.value),
     rotateFn,
+    enqueueRotationsFn,
     addToHistory,
     undo,
     redo,
+    goToHistoryPointer,
   }
 }
 

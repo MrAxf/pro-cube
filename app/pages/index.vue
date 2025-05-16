@@ -9,7 +9,7 @@
       </SignedIn>
     </header>
     <Button as-child>
-      <NuxtLink to="/dashboard">Dashboard </NuxtLink>
+      <NuxtLink prefetch-on="visibility" to="/dashboard">Dashboard </NuxtLink>
     </Button>
   </div>
 </template>

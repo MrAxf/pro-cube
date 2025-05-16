@@ -1,8 +1,6 @@
 <template>
-  <Button
-    variant="ghost"
-    class="group/cube-btn w-full justify-between overflow-hidden rounded-none"
-    as="div"
+  <SidebarMenuButton
+    class="group/cube-btn cursor-pointer overflow-hidden"
     @click.prevent.stop="onClick"
   >
     <span>
@@ -10,7 +8,7 @@
     </span>
 
     <div
-      class="flex translate-x-10 items-center gap-2 opacity-0 transition-all group-hover/cube-btn:translate-x-0 group-hover/cube-btn:opacity-100"
+      class="absolute end-0 flex translate-x-10 items-center gap-2 opacity-0 transition-all group-hover/cube-btn:translate-x-0 group-hover/cube-btn:opacity-100"
     >
       <Button
         variant="secondary"
@@ -29,7 +27,7 @@
         <span class="sr-only">Delete cube</span>
       </Button>
     </div>
-  </Button>
+  </SidebarMenuButton>
 </template>
 
 <script setup lang="ts">

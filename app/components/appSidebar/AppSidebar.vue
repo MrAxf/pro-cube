@@ -1,7 +1,10 @@
 <template>
   <Sidebar v-bind="props">
     <SidebarHeader class="flex flex-col">
-      <h1 class="py-4 text-center text-2xl font-bold">PRO CUBE</h1>
+      <div class="flex items-center justify-center">
+        <img src="/favicon.svg" alt="Pro Cube Logo" class="mr-2 size-12" />
+        <h1 class="text-2xl font-bold">PRO CUBE</h1>
+      </div>
       <Separator class="my-2" />
     </SidebarHeader>
     <SidebarContent class="overflow-hidden">
@@ -11,7 +14,11 @@
           <Plus /> <span class="sr-only">Create cube</span>
         </Button>
       </div>
-      <AppSidebarCubeList class="grow" @edit="openCubeFormDialog($event)" />
+      <SidebarGroup>
+        <SidebarGroupContent class="overflow-hidden">
+          <AppSidebarCubeList class="grow" @edit="openCubeFormDialog($event)" />
+        </SidebarGroupContent>
+      </SidebarGroup>
     </SidebarContent>
     <SidebarFooter class="flex flex-col">
       <SignedIn>

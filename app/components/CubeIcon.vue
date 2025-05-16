@@ -682,7 +682,7 @@ import type { HTMLAttributes } from 'vue'
 const props = withDefaults(
   defineProps<{
     class?: HTMLAttributes['class']
-    size?: 2 | 3 | 4
+    size?: number
     mode?: 'color' | 'rotation'
     colorBackground?: string
     colorUp?: string

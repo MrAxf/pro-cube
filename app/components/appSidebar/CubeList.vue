@@ -1,16 +1,16 @@
 <template>
-  <div ref="parentRef" class="relative overflow-auto">
+  <div ref="parentRef" class="relative overflow-x-hidden overflow-y-auto">
     <div v-if="!cubes?.length && status !== 'pending'" class="p-4 text-center">
       No cubes found.
     </div>
-    <div
+    <SidebarMenu
       :style="{
         height: `${totalSize}px`,
         width: '100%',
         position: 'relative',
       }"
     >
-      <div
+      <SidebarMenuItem
         v-for="virtualRow in virtualRows"
         :key="virtualRow.index"
         :style="{
@@ -32,8 +32,8 @@
             @delete="emit('delete', cubes![virtualRow.index]!)"
           />
         </template>
-      </div>
-    </div>
+      </SidebarMenuItem>
+    </SidebarMenu>
   </div>
 </template>
 

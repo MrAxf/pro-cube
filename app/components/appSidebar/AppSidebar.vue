@@ -1,30 +1,30 @@
 <template>
   <Sidebar v-bind="props">
     <SidebarHeader class="flex flex-col">
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center py-2">
         <img src="/favicon.svg" alt="Pro Cube Logo" class="mr-2 size-12" />
         <h1 class="text-2xl font-bold">PRO CUBE</h1>
       </div>
-      <Separator class="my-2" />
+      <Separator />
     </SidebarHeader>
     <SidebarContent class="overflow-hidden">
-      <div class="flex shrink-0 items-center justify-between px-4">
-        <h3 class="text-lg font-semibold">My cubes</h3>
-        <Button class="size-9" @click="openCubeFormDialog()">
+      <SidebarGroup class="grow overflow-hidden">
+        <SidebarGroupLabel>My Cubes</SidebarGroupLabel>
+        <SidebarGroupAction
+          title="Create cube"
+          class="cursor-pointer"
+          @click="openCubeFormDialog()"
+        >
           <Plus /> <span class="sr-only">Create cube</span>
-        </Button>
-      </div>
-      <SidebarGroup>
-        <SidebarGroupContent class="overflow-hidden">
-          <AppSidebarCubeList class="grow" @edit="openCubeFormDialog($event)" />
+        </SidebarGroupAction>
+        <SidebarGroupContent class="h-full overflow-hidden">
+          <AppSidebarCubeList @edit="openCubeFormDialog($event)" />
         </SidebarGroupContent>
       </SidebarGroup>
     </SidebarContent>
     <SidebarFooter class="flex flex-col">
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-      <Separator class="my-2" />
+      <Separator />
+      <AppSidebarUserNav />
       <small class="text-center"> &copy; 2025 Axford </small></SidebarFooter
     >
     <SidebarRail />

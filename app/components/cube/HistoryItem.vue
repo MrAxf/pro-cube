@@ -3,12 +3,9 @@
     class="bg-primary hover:bg-primary/90 grid size-full cursor-pointer items-center transition-opacity"
   >
     <CubeIcon v-bind="cubeIconProps" class="size-9/10" />
-    <Badge
-      v-if="turnSteps > 1"
-      variant="secondary"
-      class="absolute end-2 bottom-2"
-      >{{ turnSteps }}</Badge
-    >
+    <Badge variant="secondary" class="absolute end-2 bottom-2">
+      {{ Math.abs(historyItem.angle) }}°
+    </Badge>
   </button>
 </template>
 <script setup lang="ts">
@@ -28,6 +25,4 @@ const cubeIconProps = computed(() => ({
       ? 'forward'
       : ('backward' as 'forward' | 'backward'),
 }))
-
-const turnSteps = computed(() => (Math.abs(props.historyItem.angle) / 90) % 4)
 </script>

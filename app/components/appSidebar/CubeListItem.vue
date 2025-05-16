@@ -1,6 +1,7 @@
 <template>
   <SidebarMenuButton
     class="group/cube-btn cursor-pointer overflow-hidden"
+    :title="`Open ${cube.name}`"
     @click.prevent.stop="onClick"
   >
     <span>
@@ -13,6 +14,7 @@
       <Button
         variant="secondary"
         class="size-7"
+        :title="`Edit ${cube.name}`"
         @click.prevent.stop="emit('edit', cube)"
       >
         <Edit />
@@ -21,6 +23,7 @@
       <Button
         variant="secondary"
         class="size-7"
+        :title="`Delete ${cube.name}`"
         @click.prevent.stop="emit('delete', cube)"
       >
         <Trash />

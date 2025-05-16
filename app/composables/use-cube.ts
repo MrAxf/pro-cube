@@ -32,6 +32,10 @@ export function provideCube({
   enqueueRotationsFn: CubeContext['enqueueRotationsFn']
   isRotating: () => boolean
 }): CubeContext {
+  // const history = useLocalStorage<CubeHistory>(
+  //   computed(() => `${cube.value?.id}-history`),
+  //   []
+  // )
   const history = ref<CubeHistory>([])
   const historyPointer = ref(0)
 

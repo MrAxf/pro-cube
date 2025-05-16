@@ -5,11 +5,12 @@
       <header
         class="bg-background/70 sticky top-0 flex items-center justify-between p-4 backdrop-blur-md"
       >
-        <SidebarTrigger />
+        <SidebarTrigger title="Toggle sidebar" />
         <Button
           variant="ghost"
           size="icon"
           class="size-7"
+          title="Toggle Color Mode"
           @click="toggleColorMode"
         >
           <Sun v-if="colorMode.preference === 'dark'" />

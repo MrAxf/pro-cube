@@ -10,20 +10,21 @@
         leave-to-class="opacity-0"
         mode="out-in"
       >
-        <CubeWrapper
-          :key="cube?.id"
-          ref="$cubeWrapper"
-          class="block size-full"
-          :size="cube?.size"
-          :color-background="cube?.baseColor"
-          :color-up="cube?.upColor"
-          :color-down="cube?.downColor"
-          :color-left="cube?.leftColor"
-          :color-right="cube?.rightColor"
-          :color-front="cube?.frontColor"
-          :color-back="cube?.backColor"
-          @afterrotate="afterRotate"
-        />
+        <div :key="cube?.id" class="size-full">
+          <CubeWrapper
+            ref="$cubeWrapper"
+            class="size-full"
+            :size="cube?.size"
+            :color-background="cube?.baseColor"
+            :color-up="cube?.upColor"
+            :color-down="cube?.downColor"
+            :color-left="cube?.leftColor"
+            :color-right="cube?.rightColor"
+            :color-front="cube?.frontColor"
+            :color-back="cube?.backColor"
+            @afterrotate="afterRotate"
+          />
+        </div>
       </Transition>
     </div>
     <div class="flex flex-row items-center justify-center gap-2 p-2">

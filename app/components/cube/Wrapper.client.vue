@@ -1,5 +1,7 @@
 <template>
-  <web-cube ref="$cube" :class="props.class"></web-cube>
+  <div :class="props.class">
+    <web-cube ref="$cube" class="block size-full"></web-cube>
+  </div>
 </template>
 
 <script setup lang="ts">

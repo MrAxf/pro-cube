@@ -1,7 +1,7 @@
 <template>
   <SidebarMenu>
     <SidebarMenuItem>
-      <DropdownMenu v-if="isLoaded">
+      <DropdownMenu>
         <DropdownMenuTrigger as-child>
           <SidebarMenuButton
             size="lg"
@@ -9,7 +9,9 @@
           >
             <Avatar class="h-8 w-8 rounded-lg">
               <AvatarImage :src="user!.imageUrl" :alt="user!.username" />
-              <AvatarFallback class="rounded-lg"> CN </AvatarFallback>
+              <AvatarFallback class="rounded-lg">
+                {{ avatarFallback }}
+              </AvatarFallback>
             </Avatar>
             <div class="grid flex-1 text-left text-sm leading-tight">
               <span class="truncate font-semibold">{{ user!.username }}</span>
@@ -28,7 +30,9 @@
             <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
               <Avatar class="h-8 w-8 rounded-lg">
                 <AvatarImage :src="user!.imageUrl" :alt="user!.username" />
-                <AvatarFallback class="rounded-lg"> CN </AvatarFallback>
+                <AvatarFallback class="rounded-lg">
+                  {{ avatarFallback }}
+                </AvatarFallback>
               </Avatar>
               <div class="grid flex-1 text-left text-sm leading-tight">
                 <span class="truncate font-semibold">{{ user!.username }}</span>
@@ -58,7 +62,7 @@
 import { useSidebar } from '@/components/ui/sidebar'
 import { BadgeCheck, ChevronsUpDown, LogOut } from 'lucide-vue-next'
 
-const { user, isLoaded } = useUser()
+const { user } = useUser()
 const clerk = useClerk()
 const { signOut } = useAuth()
 
@@ -66,5 +70,14 @@ const { isMobile } = useSidebar()
 
 const userEmail = computed(() => {
   return user.value?.emailAddresses[0]?.emailAddress
+})
+
+const avatarFallback = computed(() => {
+  return user.value?.username
+    ? user.value.username
+        .split(' ')
+        .map((word) => word[0]?.toUpperCase())
+        .join('')
+    : 'CN'
 })
 </script>

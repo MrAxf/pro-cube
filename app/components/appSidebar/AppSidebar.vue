@@ -29,7 +29,13 @@
     </SidebarContent>
     <SidebarFooter class="flex flex-col">
       <Separator />
-      <AppSidebarUserNav />
+      <ClientOnly>
+        <AppSidebarUserNav v-if="isLoaded && isSignedIn" />
+        <AppSidebarUserNavSkeleton v-else />
+        <template #fallback>
+          <AppSidebarUserNavSkeleton />
+        </template>
+      </ClientOnly>
       <small class="text-center"> &copy; 2025 Axford </small></SidebarFooter
     >
     <SidebarRail />
@@ -46,6 +52,7 @@ const props = withDefaults(defineProps<SidebarProps>(), {
   collapsible: 'offcanvas',
 })
 
+const { isLoaded, isSignedIn } = useUser()
 const cubeStore = useCubeStore()
 const overlay = useOverlay()
 
@@ -65,6 +72,7 @@ function openDeleteCubeDialog(cube: Cube) {
   deleteCubeDialog.open({
     title: 'Delete cube',
     description: `Are you sure you want to delete ${cube.name}? This action cannot be undone.`,
+    actionLabel: 'Delete',
     onAction: async () => {
       const dbCube = await $fetch(`/api/cubes/${cube.id}`, {
         method: 'DELETE',

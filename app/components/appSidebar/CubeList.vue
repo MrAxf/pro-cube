@@ -3,7 +3,7 @@
     ref="parentRef"
     class="relative h-full w-full overflow-x-hidden overflow-y-auto"
   >
-    <div v-if="!cubes?.length && status !== 'pending'" class="p-4 text-center">
+    <div v-if="!cubes?.length && status === 'success'" class="p-4 text-center">
       No cubes found.
     </div>
     <SidebarMenu
@@ -37,6 +37,9 @@
         </template>
       </SidebarMenuItem>
     </SidebarMenu>
+    <div v-if="status === 'pending'">
+      <SidebarMenuSkeleton v-for="n in 20" :key="n" />
+    </div>
   </div>
 </template>
 
@@ -47,6 +50,8 @@ const emit = defineEmits<{
   edit: [cube: Cube]
   delete: [cube: Cube]
 }>()
+
+const cubeStore = useCubeStore()
 
 const { data: cubes } = useNuxtData<Cube[]>('cubes')
 if (!cubes.value) {
@@ -112,4 +117,14 @@ watchEffect(() => {
     page.value++
   }
 })
+
+watch(
+  cubes,
+  (newValue) => {
+    if (newValue && newValue.length > 0 && !cubeStore.cube) {
+      cubeStore.cube = newValue[0] as Cube
+    }
+  },
+  { once: true }
+)
 </script>

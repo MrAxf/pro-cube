@@ -43,7 +43,7 @@
           @click="emit('delete', cube)"
         >
           <Trash />
-          <span>Delete Project</span>
+          <span>Delete Cube</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

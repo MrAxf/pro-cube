@@ -1,7 +1,7 @@
 <template>
   <div
     ref="parentRef"
-    class="relative h-full overflow-x-hidden overflow-y-auto"
+    class="relative h-full w-full overflow-x-hidden overflow-y-auto"
   >
     <div v-if="!cubes?.length && status !== 'pending'" class="p-4 text-center">
       No cubes found.

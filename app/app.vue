@@ -1,6 +1,6 @@
 <template>
-  <div class="h-dvh w-dvw">
-    <TooltipProvider>
+  <TooltipProvider>
+    <div class="h-dvh w-dvw">
       <NuxtLoadingIndicator />
       <NuxtRouteAnnouncer />
       <NuxtLayout>
@@ -10,8 +10,8 @@
         <Toaster />
         <OverlayProvider />
       </ClientOnly>
-    </TooltipProvider>
-  </div>
+    </div>
+  </TooltipProvider>
 </template>
 
 <script setup lang="ts">

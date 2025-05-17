@@ -1,6 +1,6 @@
 <template>
   <Dialog v-bind="forwarded">
-    <DialogContent
+    <DialogScrollContent
       class="flex max-h-[90dvh] grid-rows-[auto_minmax(0,1fr)_auto] flex-col overflow-hidden p-0 md:max-w-4xl"
     >
       <DialogHeader class="p-6 pb-0">
@@ -16,7 +16,7 @@
       <div class="overflow-y-auto px-6 py-4">
         <CubeForm :default-values @submit="onSubmit" />
       </div>
-    </DialogContent>
+    </DialogScrollContent>
   </Dialog>
 </template>
 
@@ -42,6 +42,8 @@ const forwarded = useForwardPropsEmits(
   }),
   emits
 )
+
+const cubeStore = useCubeStore()
 
 const { data: cubes } = useNuxtData<Cube[]>('cubes')
 
@@ -98,14 +100,19 @@ async function onSubmit(data: CubeForm) {
       ...cubes.value!.slice(idx + 1),
     ]
     emits('update:open', false)
-    toast(
-      props.cube ? 'Cube updated successfully' : 'Cube created successfully',
-      {
-        description: props.cube
-          ? 'Your cube has been updated successfully.'
-          : 'Your cube has been created successfully.',
+    if (props.cube) {
+      toast('Cube updated successfully', {
+        description: 'Your cube has been updated successfully.',
+      })
+      if (cubeStore.cube?.id === props.cube.id) {
+        cubeStore.cube = dbCube!.data as Cube
       }
-    )
+    } else {
+      toast('Cube created successfully', {
+        description: 'Your cube has been created successfully.',
+      })
+      cubeStore.cube = dbCube!.data as Cube
+    }
   } catch (error) {
     console.error(error)
   }

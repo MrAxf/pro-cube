@@ -18,7 +18,12 @@
           <Plus /> <span class="sr-only">Create cube</span>
         </SidebarGroupAction>
         <SidebarGroupContent class="h-full overflow-hidden">
-          <AppSidebarCubeList @edit="openCubeFormDialog($event)" />
+          <ClientOnly>
+            <AppSidebarCubeList
+              @edit="openCubeFormDialog($event)"
+              @delete="openDeleteCubeDialog($event)"
+            />
+          </ClientOnly>
         </SidebarGroupContent>
       </SidebarGroup>
     </SidebarContent>
@@ -32,14 +37,16 @@
 </template>
 
 <script setup lang="ts">
-import { CubeFormDialog } from '#components'
+import { AlertModal, CubeFormDialog } from '#components'
 import type { SidebarProps } from '@/components/ui/sidebar'
 import { Plus } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 
 const props = withDefaults(defineProps<SidebarProps>(), {
   collapsible: 'offcanvas',
 })
 
+const cubeStore = useCubeStore()
 const overlay = useOverlay()
 
 const cubeFormDialog = overlay.create(CubeFormDialog)
@@ -47,6 +54,30 @@ const cubeFormDialog = overlay.create(CubeFormDialog)
 function openCubeFormDialog(cube?: Cube) {
   cubeFormDialog.open({
     cube,
+  })
+}
+
+const deleteCubeDialog = overlay.create(AlertModal)
+
+const { data: cubes } = useNuxtData<Cube[]>('cubes')
+
+function openDeleteCubeDialog(cube: Cube) {
+  deleteCubeDialog.open({
+    title: 'Delete cube',
+    description: `Are you sure you want to delete ${cube.name}? This action cannot be undone.`,
+    onAction: async () => {
+      const dbCube = await $fetch(`/api/cubes/${cube.id}`, {
+        method: 'DELETE',
+      })
+      if (cubes.value && dbCube.data) {
+        cubes.value = cubes.value.filter((c) => c.id !== dbCube.data!.id)
+        cubeStore.cube =
+          cubes.value.length > 0 ? (cubes.value[0] as Cube) : null
+      }
+      toast('Cube deleted', {
+        description: `Cube ${cube.name} has been deleted.`,
+      })
+    },
   })
 }
 </script>

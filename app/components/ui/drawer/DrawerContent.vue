@@ -16,7 +16,7 @@ const forwarded = useForwardPropsEmits(props, emits)
 </script>
 
 <template>
-  <DrawerPortal>
+  <DrawerPortal to="#teleports">
     <DrawerOverlay />
     <DrawerContent
       data-slot="drawer-content"

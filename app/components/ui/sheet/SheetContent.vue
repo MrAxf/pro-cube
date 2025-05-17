@@ -34,7 +34,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>
 
 <template>
-  <DialogPortal>
+  <DialogPortal to="#teleports">
     <SheetOverlay />
     <DialogContent
       data-slot="sheet-content"

@@ -56,16 +56,20 @@
               <Label :for="`${field.name}.2`">
                 <Card
                   :class="[
-                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground cursor-pointer transition-colors',
+                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground w-60 cursor-pointer transition-colors',
                     {
                       'border-accent-foreground': field.state.value === 2,
                     },
                   ]"
-                  ><CardContent class="flex flex-col gap-[1lh]">
-                    <span class="text-xl font-bold">2x2</span>
-                    <span>A 2x2 cube</span>
-                  </CardContent></Card
                 >
+                  <CardContent class="flex items-center justify-between gap-2">
+                    <CubeIcon class="size-20" :size="2" />
+                    <div class="flex flex-col gap-[1lh]">
+                      <span class="text-xl font-bold">2x2</span>
+                      <span>A 2x2 cube</span>
+                    </div>
+                  </CardContent>
+                </Card>
               </Label>
             </div>
             <div class="flex items-center space-x-2">
@@ -77,16 +81,20 @@
               <Label :for="`${field.name}.3`">
                 <Card
                   :class="[
-                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground cursor-pointer transition-colors',
+                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground w-60 cursor-pointer transition-colors',
                     {
                       'border-accent-foreground': field.state.value === 3,
                     },
                   ]"
-                  ><CardContent class="flex flex-col gap-[1lh]">
-                    <span class="text-xl font-bold">3x3</span>
-                    <span>A 3x3 cube</span>
-                  </CardContent></Card
                 >
+                  <CardContent class="flex items-center justify-between gap-2">
+                    <CubeIcon class="size-20" :size="3" />
+                    <div class="flex flex-col gap-[1lh]">
+                      <span class="text-xl font-bold">3x3</span>
+                      <span>A 3x3 cube</span>
+                    </div>
+                  </CardContent>
+                </Card>
               </Label>
             </div>
             <div class="flex items-center space-x-2">
@@ -98,16 +106,20 @@
               <Label :for="`${field.name}.4`">
                 <Card
                   :class="[
-                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground cursor-pointer transition-colors',
+                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground w-60 cursor-pointer transition-colors',
                     {
                       'border-accent-foreground': field.state.value === 4,
                     },
                   ]"
-                  ><CardContent class="flex flex-col gap-[1lh]">
-                    <span class="text-xl font-bold">4x4</span>
-                    <span>A 4x4 cube</span>
-                  </CardContent></Card
                 >
+                  <CardContent class="flex items-center justify-between gap-2">
+                    <CubeIcon class="size-20" :size="4" />
+                    <div class="flex flex-col gap-[1lh]">
+                      <span class="text-xl font-bold">4x4</span>
+                      <span>A 4x4 cube</span>
+                    </div>
+                  </CardContent>
+                </Card>
               </Label>
             </div>
           </RadioGroup>

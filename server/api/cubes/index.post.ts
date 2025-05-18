@@ -14,6 +14,15 @@ export default defineEventHandler(async (event) => {
 
   const body = await readValidatedBody(event, parser(cubeSchema))
 
+  const total = await db.$count(cubes, eq(cubes.userId, userId))
+
+  if (total >= 20) {
+    throw createError({
+      statusCode: 403,
+      statusMessage: 'Forbidden: User has reached the maximum number of cubes',
+    })
+  }
+
   const data = await db
     .insert(cubes)
     .values({

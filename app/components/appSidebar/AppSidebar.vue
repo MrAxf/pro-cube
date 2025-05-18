@@ -13,6 +13,7 @@
         <SidebarGroupAction
           title="Create cube"
           class="cursor-pointer"
+          :disabled="cubes?.length ?? 20 >= 20"
           @click="openCubeFormDialog()"
         >
           <Plus /> <span class="sr-only">Create cube</span>

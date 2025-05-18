@@ -51,6 +51,7 @@
 </template>
 
 <script setup lang="ts">
+import { useSidebar } from '@/components/ui/sidebar'
 import { Edit, MoreHorizontal, Trash } from 'lucide-vue-next'
 
 const props = defineProps<{
@@ -63,8 +64,12 @@ const emit = defineEmits<{
 }>()
 
 const cubeStore = useCubeStore()
+const { isMobile, setOpenMobile } = useSidebar()
 
 function onClick() {
   cubeStore.cube = props.cube
+  if (isMobile.value) {
+    setOpenMobile(false)
+  }
 }
 </script>

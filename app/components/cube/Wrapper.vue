@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import {
+  type FlatState,
   type RotationEvent,
   type StateChangeEvent,
   type WebCube,
@@ -113,7 +114,14 @@ defineExpose({
     return enqueueRotations($cube.value, options)
   },
   get isRotating() {
-    return $cube.value?.isRotating ?? false
+    return $cube.value!.isRotating ?? false
+  },
+  get state() {
+    return $cube.value!.getState()
+  },
+  set state(state: FlatState) {
+    if (!$cube.value) return
+    $cube.value.setState(state)
   },
 })
 </script>

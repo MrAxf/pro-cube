@@ -1,6 +1,6 @@
 <template>
   <button
-    class="bg-primary hover:bg-primary/90 grid size-full cursor-pointer items-center transition-opacity"
+    class="bg-primary/50 hover:bg-primary/90 grid size-full cursor-pointer items-center transition-opacity"
   >
     <CubeIcon v-bind="cubeIconProps" class="size-9/10" />
     <Badge variant="secondary" class="absolute end-2 bottom-2">

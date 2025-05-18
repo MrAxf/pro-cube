@@ -1,20 +1,19 @@
-import type {
-  enqueueRotations as _enqueueRotations,
-  rotate as _rotate,
+import type { CubeWrapper } from '#components'
+import {
+  createBaseState,
+  createRandomRotationOptions,
 } from '@web-cube/web-cube'
+import type { ShallowRef } from 'vue'
 
 export type CubeContext = {
   cube: ComputedRef<Cube | null>
+  $cubeWrapper: ShallowRef<InstanceType<typeof CubeWrapper> | null>
   history: Ref<CubeHistory>
   historyPointer: ComputedRef<number>
-  rotateFn: (options: Parameters<typeof _rotate>[1]) => Promise<void>
-  enqueueRotationsFn: (
-    options: Parameters<typeof _enqueueRotations>[1]
-  ) => Promise<void>
   addToHistory: (cubeHistoryItem: CubeHistoryItem) => void
-  undo: () => Promise<void>
-  redo: () => Promise<void>
   goToHistoryPointer: (index: number) => Promise<void>
+  restore: () => void
+  scramble: () => Promise<void>
 }
 
 const cubeContextKey = '_CUBE_CONTEXT_KEY_'
@@ -23,14 +22,10 @@ const HISTORY_LIMIT = 200
 
 export function provideCube({
   cube,
-  rotateFn,
-  enqueueRotationsFn,
-  isRotating,
+  $cubeWrapper,
 }: {
   cube: ComputedRef<Cube | null>
-  rotateFn: CubeContext['rotateFn']
-  enqueueRotationsFn: CubeContext['enqueueRotationsFn']
-  isRotating: () => boolean
+  $cubeWrapper: ShallowRef<InstanceType<typeof CubeWrapper> | null>
 }): CubeContext {
   // const history = useLocalStorage<CubeHistory>(
   //   computed(() => `${cube.value?.id}-history`),
@@ -42,6 +37,7 @@ export function provideCube({
   watchEffect(() => {
     if (cube.value) {
       history.value = []
+      historyPointer.value = 0
     }
   })
 
@@ -56,69 +52,10 @@ export function provideCube({
     historyPointer.value = history.value.length
   }
 
-  async function undo() {
-    if (
-      !isRotating() &&
-      historyPointer.value > 0 &&
-      historyPointer.value <= history.value.length
-    ) {
-      historyPointer.value--
-      const item = history.value[historyPointer.value]
-      if (!item) return
-      if (item.type === 'cube') {
-        await rotateFn({
-          type: 'cube',
-          angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
-          axis: item.axis,
-          backwards: item.angle > 0,
-          speed: 100,
-        })
-      } else {
-        await rotateFn({
-          type: 'layer',
-          layer: item.layer!,
-          angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
-          axis: item.axis,
-          backwards: item.angle > 0,
-          speed: 100,
-        })
-      }
-    }
-  }
-
-  async function redo() {
-    if (
-      !isRotating() &&
-      historyPointer.value >= 0 &&
-      historyPointer.value < history.value.length
-    ) {
-      const item = history.value[historyPointer.value]
-      historyPointer.value++
-      if (!item) return
-      if (item.type === 'cube') {
-        await rotateFn({
-          type: 'cube',
-          angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
-          axis: item.axis,
-          backwards: item.angle < 0,
-          speed: 100,
-        })
-      } else {
-        await rotateFn({
-          type: 'layer',
-          layer: item.layer!,
-          angle: Math.abs(item.angle) as 90 | 180 | 270 | 360,
-          axis: item.axis,
-          backwards: item.angle < 0,
-          speed: 100,
-        })
-      }
-    }
-  }
-
   async function goToHistoryPointer(index: number) {
     if (
-      !isRotating() &&
+      $cubeWrapper.value &&
+      !$cubeWrapper.value.isRotating &&
       index >= 0 &&
       index <= history.value.length &&
       index !== historyPointer.value
@@ -129,7 +66,7 @@ export function provideCube({
       const isBackwards = index < historyPointer.value
       if (isBackwards) historyItems.reverse()
 
-      await enqueueRotationsFn(
+      await $cubeWrapper.value.enqueueRotations(
         historyItems.map((item) => {
           if (item.type === 'cube') {
             return {
@@ -155,31 +92,50 @@ export function provideCube({
     }
   }
 
+  function restore() {
+    if ($cubeWrapper.value && cube.value) {
+      $cubeWrapper.value.state = createBaseState(cube.value.size)
+      history.value = []
+      historyPointer.value = 0
+    }
+  }
+
+  async function scramble() {
+    if ($cubeWrapper.value && cube.value) {
+      restore()
+      const rotations = Array.from({ length: cube.value.size * 10 }, () =>
+        createRandomRotationOptions(cube.value!.size, {
+          type: 'layer',
+          speed: 100,
+          angle: 90,
+        })
+      ).flat()
+      await $cubeWrapper.value.enqueueRotations(rotations)
+    }
+  }
+
   provide(cubeContextKey, {
     cube,
+    $cubeWrapper,
     history,
     historyPointer: computed(() => historyPointer.value),
-    rotateFn,
-    enqueueRotationsFn,
     addToHistory,
-    undo,
-    redo,
     goToHistoryPointer,
+    restore,
+    scramble,
   })
 
   return {
     cube,
     history,
+    $cubeWrapper,
     historyPointer: computed(() => historyPointer.value),
-    rotateFn,
-    enqueueRotationsFn,
     addToHistory,
-    undo,
-    redo,
     goToHistoryPointer,
+    restore,
+    scramble,
   }
 }
-
 export function useCube(): CubeContext {
   const context = inject<CubeContext>(cubeContextKey)
   if (!context) {

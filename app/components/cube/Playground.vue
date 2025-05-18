@@ -27,46 +27,38 @@
         </div>
       </Transition>
     </div>
-    <div class="flex flex-row items-center justify-center gap-2 p-2">
+    <div class="relative flex flex-row items-center justify-center gap-2 p-2">
       <CubeHistory />
+      <Button
+        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/4"
+        variant="secondary"
+        @click="openOptionsDrawer"
+      >
+        <ChevronUp />
+        <span>Options</span>
+      </Button>
     </div>
+    <CubeOptionsDrawer v-model:open="isDrawerOpen" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { CubeHistory } from '#components'
+import { CubeHistory, CubeWrapper } from '#components'
 import type {
   RotationEvent,
   enqueueRotations as _enqueueRotations,
   rotate as _rotate,
 } from '@web-cube/web-cube'
+import { ChevronUp } from 'lucide-vue-next'
 
 const cubeStore = useCubeStore()
 const cube = computed(() => cubeStore.cube)
 
 const $cubeWrapper = useTemplateRef('$cubeWrapper')
 
-async function rotate(options: Parameters<typeof _rotate>[1]) {
-  if (!$cubeWrapper.value) return
-
-  await $cubeWrapper.value.rotate(options)
-}
-
-async function enqueueRotations(
-  options: Parameters<typeof _enqueueRotations>[1]
-) {
-  if (!$cubeWrapper.value) return
-
-  await $cubeWrapper.value.enqueueRotations(options)
-}
-
 const { addToHistory } = provideCube({
   cube,
-  rotateFn: rotate,
-  enqueueRotationsFn: enqueueRotations,
-  isRotating() {
-    return $cubeWrapper.value?.isRotating ?? false
-  },
+  $cubeWrapper,
 })
 
 function afterRotate(e: RotationEvent) {
@@ -83,5 +75,10 @@ function afterRotate(e: RotationEvent) {
     axis: e.detail.axis,
     layer: (e.detail as any).layer ?? null,
   })
+}
+
+const isDrawerOpen = ref(false)
+const openOptionsDrawer = () => {
+  isDrawerOpen.value = true
 }
 </script>

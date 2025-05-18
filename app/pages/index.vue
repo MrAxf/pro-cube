@@ -1,5 +1,7 @@
 <template>
   <div>
+    <LandingNavbar />
+    <LandingHero />
     <header>
       <SignedOut>
         <SignInButton />

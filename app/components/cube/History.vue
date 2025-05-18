@@ -1,10 +1,11 @@
 <template>
   <div
-    class="bg-secondary border-border h-32.5 w-full overflow-hidden rounded-xl border"
+    class="bg-card border-border h-32.5 w-full overflow-hidden rounded-xl border"
   >
     <div
       ref="parentRef"
       class="relative size-full overflow-x-auto overflow-y-hidden"
+      @wheel.prevent="onWheel"
     >
       <div
         :style="{
@@ -43,7 +44,7 @@
           }"
         >
           <button
-            class="bg-primary hover:bg-primary/90 grid size-full cursor-pointer items-center transition-opacity"
+            class="bg-primary/50 hover:bg-primary/90 grid size-full cursor-pointer items-center transition-opacity"
             @click="goToHistoryPointer(lastVirtualCol.index)"
           >
             <CubeIcon mode="rotation" :size="cube?.size" />
@@ -92,4 +93,10 @@ const totalSize = computed(() => colVirtualizer.value.getTotalSize())
 const lastVirtualCol = computed(() => {
   return virtualCols.value[virtualCols.value.length - 1]
 })
+
+const onWheel = (event: WheelEvent) => {
+  if (parentRef.value) {
+    parentRef.value.scrollLeft += event.deltaY
+  }
+}
 </script>

@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { AlertModal, CubeFormDialog } from '#components'
-import type { SidebarProps } from '@/components/ui/sidebar'
+import { type SidebarProps, useSidebar } from '@/components/ui/sidebar'
 import { Plus } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
@@ -55,6 +55,7 @@ const props = withDefaults(defineProps<SidebarProps>(), {
 const { isLoaded, isSignedIn } = useUser()
 const cubeStore = useCubeStore()
 const overlay = useOverlay()
+const { isMobile, setOpenMobile } = useSidebar()
 
 const cubeFormDialog = overlay.create(CubeFormDialog)
 
@@ -62,6 +63,9 @@ function openCubeFormDialog(cube?: Cube) {
   cubeFormDialog.open({
     cube,
   })
+  if (isMobile.value) {
+    setOpenMobile(false)
+  }
 }
 
 const deleteCubeDialog = overlay.create(AlertModal)
@@ -87,5 +91,8 @@ function openDeleteCubeDialog(cube: Cube) {
       })
     },
   })
+  if (isMobile.value) {
+    setOpenMobile(false)
+  }
 }
 </script>

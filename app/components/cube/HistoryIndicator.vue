@@ -9,10 +9,10 @@
       <TooltipTrigger>
         <div class="size-full">
           <div
-            class="border-secondary absolute top-0 left-1/2 h-0 w-0 -translate-x-1/2 border-x-[10px] border-t-[12px] border-x-transparent"
+            class="border-accent absolute top-0 left-1/2 h-0 w-0 -translate-x-1/2 border-x-[10px] border-t-[12px] border-x-transparent"
           ></div>
           <div
-            class="bg-secondary absolute top-0 left-1/2 h-full w-1 -translate-x-1/2"
+            class="bg-accent absolute top-0 left-1/2 h-full w-1 -translate-x-1/2"
           ></div>
         </div>
       </TooltipTrigger>

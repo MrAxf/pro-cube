@@ -8,6 +8,7 @@
       @wheel.prevent="onWheel"
     >
       <div
+        class="dark"
         :style="{
           height: '100%',
           width: `${totalSize}px`,

@@ -8,7 +8,7 @@
         <path
           style="
             display: inline;
-            fill: var(--color-foreground);
+            fill: var(--foreground);
             fill-opacity: 1;
             stroke: none;
             stroke-width: 2.5;
@@ -71,7 +71,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -86,7 +86,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -101,7 +101,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -116,7 +116,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -131,7 +131,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -146,7 +146,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -185,7 +185,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 2 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -200,7 +200,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -215,7 +215,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -230,7 +230,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 2 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -245,7 +245,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -260,7 +260,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -275,7 +275,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 2 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -290,7 +290,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -305,7 +305,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -343,7 +343,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 3 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -358,7 +358,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 2 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -373,7 +373,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -388,7 +388,7 @@
             :style="{
               display:
                 props.axis === 'Y' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -403,7 +403,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 3 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -418,7 +418,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 2 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -433,7 +433,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -448,7 +448,7 @@
             :style="{
               display:
                 props.axis === 'X' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -463,7 +463,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 3 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -478,7 +478,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 2 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -493,7 +493,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 1 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -508,7 +508,7 @@
             :style="{
               display:
                 props.axis === 'Z' && props.layer === 0 ? 'inline' : 'none',
-              fill: 'var(--color-muted-foreground)',
+              fill: 'var(--muted-foreground)',
               fillOpacity: 1,
               stroke: 'none',
               strokeWidth: 2.5,
@@ -562,7 +562,7 @@
                 : 'none',
             fill: 'none',
             fillOpacity: 1,
-            stroke: 'var(--color-destructive-foreground)',
+            stroke: 'var(--destructive-foreground)',
             strokeWidth: 3.71894,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
@@ -582,7 +582,7 @@
                 : 'none',
             fill: 'none',
             fillOpacity: 1,
-            stroke: 'var(--color-destructive-foreground)',
+            stroke: 'var(--destructive-foreground)',
             strokeWidth: 3.71894,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
@@ -602,7 +602,7 @@
                 : 'none',
             fill: 'none',
             fillOpacity: 1,
-            stroke: 'var(--color-destructive-foreground)',
+            stroke: 'var(--destructive-foreground)',
             strokeWidth: 3.71894,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
@@ -620,7 +620,7 @@
                 : 'none',
             fill: 'none',
             fillOpacity: 1,
-            stroke: 'var(--color-destructive-foreground)',
+            stroke: 'var(--destructive-foreground)',
             strokeWidth: 3.71894,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
@@ -639,7 +639,7 @@
                 : 'none',
             fill: 'none',
             fillOpacity: 1,
-            stroke: 'var(--color-destructive-foreground)',
+            stroke: 'var(--destructive-foreground)',
             strokeWidth: 3.71894,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
@@ -659,7 +659,7 @@
                 : 'none',
             fill: 'none',
             fillOpacity: 1,
-            stroke: 'var(--color-destructive-foreground)',
+            stroke: 'var(--destructive-foreground)',
             strokeWidth: 3.71894,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',

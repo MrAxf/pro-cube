@@ -17,31 +17,19 @@
           </a>
         </NavigationMenuItem>
 
-        <span class="flex md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            title="Toggle Color Mode"
-            @click="toggleColorMode"
-          >
-            <Sun v-if="colorMode.preference === 'dark'" />
-            <Moon v-else />
-            <span class="sr-only">Toggle Color Mode</span>
-          </Button>
-        </span>
+        <nav class="gap-2 md:flex"></nav>
 
-        <nav class="hidden gap-2 md:flex"></nav>
-
-        <div class="hidden gap-2 md:flex">
-          <a
-            rel="noreferrer noopener"
-            href="https://github.com/MrAxf/pro-cube"
-            target="_blank"
-            :class="`border ${buttonVariants({ variant: 'outline' })}`"
-          >
-            <Github class="mr-2 h-5 w-5" />
-            Github
-          </a>
+        <div class="gap-2 md:flex">
+          <SignedOut>
+            <Button variant="outline" as-child>
+              <SignInButton />
+            </Button>
+          </SignedOut>
+          <SignedIn>
+            <Button variant="outline" as-child>
+              <SignOutButton />
+            </Button>
+          </SignedIn>
 
           <Button
             variant="ghost"
@@ -60,9 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { Github, Moon, Sun } from 'lucide-vue-next'
-
-import { buttonVariants } from '../ui/button'
+import { Moon, Sun } from 'lucide-vue-next'
 
 const colorMode = useColorMode()
 

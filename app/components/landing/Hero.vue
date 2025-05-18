@@ -28,7 +28,18 @@
       </p>
 
       <div class="space-y-4 md:flex md:space-y-0 md:space-x-4">
-        <Button class="w-full md:w-1/3">Get Started</Button>
+        <SignedOut>
+          <Button class="w-full md:w-1/3" as-child>
+            <SignInButton />
+          </Button>
+        </SignedOut>
+        <SignedIn>
+          <Button class="w-full md:w-1/3" as-child>
+            <NuxtLink prefetch-on="visibility" to="/dashboard">
+              Enter the app
+            </NuxtLink>
+          </Button>
+        </SignedIn>
 
         <a
           rel="noreferrer noopener"

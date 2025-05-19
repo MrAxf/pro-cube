@@ -1,6 +1,6 @@
 <template>
   <section
-    class="container mx-auto grid place-items-center gap-10 px-4 py-20 md:py-32 lg:grid-cols-2"
+    class="relative container mx-auto grid place-items-center gap-10 px-4 py-20 md:py-32 lg:grid-cols-2"
   >
     <div class="space-y-6 text-center lg:text-start">
       <main class="text-5xl font-bold md:text-6xl">
@@ -57,7 +57,9 @@
       <LandingHeroCubes />
     </div>
 
-    <div class="shadow"></div>
+    <GlowShine
+      class="top-30 -z-1 h-[250px] w-[300px] [--glow-slide-from:0%] [--glow-slide-to:100%] lg:top-50 lg:h-[500px] lg:w-[600px] lg:[--glow-slide-from:50%]"
+    />
   </section>
 </template>
 
@@ -66,67 +68,3 @@ import { Github } from 'lucide-vue-next'
 
 import { buttonVariants } from '../ui/button'
 </script>
-
-<style scoped>
-.shadow {
-  position: absolute;
-  background: var(--color-primary);
-  border-radius: 24px;
-  rotate: 35deg;
-  z-index: -1;
-  width: 260px;
-  top: 200px;
-  height: 400px;
-  filter: blur(150px);
-  will-change: transform;
-  animation: shadow-slide infinite 4s linear alternate;
-}
-
-@keyframes shadow-slide {
-  from {
-    background: --alpha(var(--color-primary) / 20%);
-    right: 460px;
-  }
-  to {
-    background: --alpha(var(--color-primary) / 80%);
-    right: 160px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .shadow {
-    top: 70px;
-  }
-
-  @keyframes shadow-slide {
-    from {
-      background: --alpha(var(--color-primary) / 20%);
-      right: 460px;
-    }
-    to {
-      background: --alpha(var(--color-primary) / 50%);
-      right: 160px;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .shadow {
-    top: 70px;
-    width: 100px;
-    height: 350px;
-    filter: blur(60px);
-  }
-
-  @keyframes shadow-slide {
-    from {
-      background: --alpha(var(--color-primary) / 20%);
-      right: 280px;
-    }
-    to {
-      background: --alpha(var(--color-primary) / 30%);
-      right: 100px;
-    }
-  }
-}
-</style>

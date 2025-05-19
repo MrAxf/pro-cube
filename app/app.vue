@@ -37,4 +37,14 @@ useHead({
     },
   ],
 })
+
+useSeoMeta({
+  ogTitle:
+    'Pro Cube, an application for create and customize your own puzzle cubes',
+  description:
+    'Pro Cube, an application for create and customize your own puzzle cubes. Easily create, customize, and manage your own puzzle cubes.',
+  ogDescription:
+    'Pro Cube, an application for create and customize your own puzzle cubes. Easily create, customize, and manage your own puzzle cubes.',
+  ogImage: 'https://procube.axford.dev/og.webp',
+})
 </script>

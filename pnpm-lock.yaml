@@ -30,8 +30,8 @@ importers:
         specifier: 4.1.7
         version: 4.1.7(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.7.1))
       '@tanstack/vue-form':
-        specifier: 1.11.1
-        version: 1.11.1(vue@3.5.14(typescript@5.8.3))
+        specifier: 1.11.2
+        version: 1.11.2(vue@3.5.14(typescript@5.8.3))
       '@tanstack/vue-virtual':
         specifier: 3.13.8
         version: 3.13.8(vue@3.5.14(typescript@5.8.3))
@@ -50,9 +50,6 @@ importers:
       clsx:
         specifier: 2.1.1
         version: 2.1.1
-      dexie:
-        specifier: 4.0.11
-        version: 4.0.11
       drizzle-kit:
         specifier: 0.31.1
         version: 0.31.1
@@ -71,9 +68,6 @@ importers:
       lucide-vue-next:
         specifier: 0.511.0
         version: 0.511.0(vue@3.5.14(typescript@5.8.3))
-      motion-v:
-        specifier: 1.0.2
-        version: 1.0.2(react@19.1.0)(vue@3.5.14(typescript@5.8.3))
       nuxt:
         specifier: 3.17.3
         version: 3.17.3(@libsql/client@0.15.6)(@parcel/watcher@2.5.1)(@types/node@22.15.17)(db0@0.3.2(@libsql/client@0.15.6)(drizzle-orm@0.43.1(@libsql/client@0.15.6)))(drizzle-orm@0.43.1(@libsql/client@0.15.6))(eslint@9.27.0(jiti@2.4.2))(ioredis@5.6.1)(lightningcss@1.30.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.40.2)(terser@5.39.0)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
@@ -1609,8 +1603,8 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6
 
-  '@tanstack/form-core@1.11.1':
-    resolution: {integrity: sha512-rnj6BU2xCELv6Owm6G6XNjvleQyIIXdYtdl6FF0SF5mWcc1yNic9qWSVAeiYtVy9LgK6i7XW7KuNYAgJDaLxbQ==}
+  '@tanstack/form-core@1.11.2':
+    resolution: {integrity: sha512-HAocV5E6y4EHisH6qPvredkr2X5ARULDLWx8Z7Jz9pNz0bUBzUjPF/QtVBHQKrYMrwl9cE+TxddcghjiQYDsmQ==}
 
   '@tanstack/store@0.7.0':
     resolution: {integrity: sha512-CNIhdoUsmD2NolYuaIs8VfWM467RK6oIBAW4nPEKZhg1smZ+/CwtCdpURgp7nxSqOaV9oKkzdWD80+bC66F/Jg==}
@@ -1618,8 +1612,8 @@ packages:
   '@tanstack/virtual-core@3.13.8':
     resolution: {integrity: sha512-BT6w89Hqy7YKaWewYzmecXQzcJh6HTBbKYJIIkMaNU49DZ06LoTV3z32DWWEdUsgW6n1xTmwTLs4GtWrZC261w==}
 
-  '@tanstack/vue-form@1.11.1':
-    resolution: {integrity: sha512-M7czJEblr3JIorC4PGQxpJhx5Ihp+vedul2jdC3hheJvZ6mlbnYDjKEFC8F1RC5Vz13cyX7XRui9vQDwsMeE4A==}
+  '@tanstack/vue-form@1.11.2':
+    resolution: {integrity: sha512-mSrA6OoKSd+EWTwyyazJCsN0lRybqEOqNsPSHjDZUO/9FqTcNB1ZE7Mz/oqtZ+UCJHKBKEEl39ZW1VjqbH9rVQ==}
     peerDependencies:
       vue: ^3.4.0
 
@@ -2661,9 +2655,6 @@ packages:
   devalue@5.1.1:
     resolution: {integrity: sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw==}
 
-  dexie@4.0.11:
-    resolution: {integrity: sha512-SOKO002EqlvBYYKQSew3iymBoN2EQ4BDw/3yprjh7kAfFzjBYkaMNa/pZvcA7HSWlcKSQb9XhPe3wKyQ0x4A8A==}
-
   dfa@1.2.0:
     resolution: {integrity: sha512-ED3jP8saaweFTjeGX8HQPjeC1YYyZs98jGNZx6IiBvxW7JG5v492kamAQB3m2wop07CvU/RQmzcKr6bgcC5D/Q==}
 
@@ -3170,20 +3161,6 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
-  framer-motion@12.5.0:
-    resolution: {integrity: sha512-buPlioFbH9/W7rDzYh1C09AuZHAk2D1xTA1BlounJ2Rb9aRg84OXexP0GLd+R83v0khURdMX7b5MKnGTaSg5iA==}
-    peerDependencies:
-      '@emotion/is-prop-valid': '*'
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
   fresh@2.0.0:
     resolution: {integrity: sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==}
     engines: {node: '>= 0.8'}
@@ -3347,9 +3324,6 @@ packages:
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
-
-  hey-listen@1.0.8:
-    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -3937,17 +3911,6 @@ packages:
     resolution: {integrity: sha512-kvw3B4G19IXk+BOXnYq/D/VeO9qfHaapMeuS7w7sNUqmGaA6hywdFHMi+VWeR9wUScXM7XjoryTffCZ5B0/8IA==}
     engines: {node: '>=14'}
     hasBin: true
-
-  motion-dom@12.10.4:
-    resolution: {integrity: sha512-GSv8kz0ANFfeGrFKi99s3GQjLiL1IKH3KtSNEqrPiVbloHVRiNbNtpsYQq9rkV2AV+7jxvd1X1ObUMVDnAEnXA==}
-
-  motion-utils@12.9.4:
-    resolution: {integrity: sha512-BW3I65zeM76CMsfh3kHid9ansEJk9Qvl+K5cu4DVHKGsI52n76OJ4z2CUJUV+Mn3uEP9k1JJA3tClG0ggSrRcg==}
-
-  motion-v@1.0.2:
-    resolution: {integrity: sha512-Qn/X9Mx/5g02rjvpGtn5fht2OWTAnZoed4vLXgjM0lJgkSEtoGuadwEVypbCVH3WW1AHsns2k2okKAjpDrKu6A==}
-    peerDependencies:
-      vue: '>=3.0.0'
 
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
@@ -7216,7 +7179,7 @@ snapshots:
       tailwindcss: 4.1.7
       vite: 6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.7.1)
 
-  '@tanstack/form-core@1.11.1':
+  '@tanstack/form-core@1.11.2':
     dependencies:
       '@tanstack/store': 0.7.0
 
@@ -7224,9 +7187,9 @@ snapshots:
 
   '@tanstack/virtual-core@3.13.8': {}
 
-  '@tanstack/vue-form@1.11.1(vue@3.5.14(typescript@5.8.3))':
+  '@tanstack/vue-form@1.11.2(vue@3.5.14(typescript@5.8.3))':
     dependencies:
-      '@tanstack/form-core': 1.11.1
+      '@tanstack/form-core': 1.11.2
       '@tanstack/vue-store': 0.7.0(vue@3.5.14(typescript@5.8.3))
       vue: 3.5.14(typescript@5.8.3)
     transitivePeerDependencies:
@@ -8404,8 +8367,6 @@ snapshots:
 
   devalue@5.1.1: {}
 
-  dexie@4.0.11: {}
-
   dfa@1.2.0: {}
 
   diff@7.0.0: {}
@@ -8976,14 +8937,6 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  framer-motion@12.5.0(react@19.1.0):
-    dependencies:
-      motion-dom: 12.10.4
-      motion-utils: 12.9.4
-      tslib: 2.8.1
-    optionalDependencies:
-      react: 19.1.0
-
   fresh@2.0.0: {}
 
   fs-constants@1.0.0: {}
@@ -9171,8 +9124,6 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
-
-  hey-listen@1.0.8: {}
 
   hookable@5.5.3: {}
 
@@ -9687,25 +9638,6 @@ snapshots:
     dependencies:
       ast-module-types: 5.0.0
       node-source-walk: 6.0.2
-
-  motion-dom@12.10.4:
-    dependencies:
-      motion-utils: 12.9.4
-
-  motion-utils@12.9.4: {}
-
-  motion-v@1.0.2(react@19.1.0)(vue@3.5.14(typescript@5.8.3)):
-    dependencies:
-      '@vueuse/core': 10.11.1(vue@3.5.14(typescript@5.8.3))
-      framer-motion: 12.5.0(react@19.1.0)
-      hey-listen: 1.0.8
-      motion-dom: 12.10.4
-      vue: 3.5.14(typescript@5.8.3)
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@vue/composition-api'
-      - react
-      - react-dom
 
   mrmime@2.0.1: {}
 

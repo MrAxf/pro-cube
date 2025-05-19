@@ -34,7 +34,6 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'shadcn-nuxt',
     '@nuxtjs/color-mode',
-    'motion-v/nuxt',
     '@clerk/nuxt',
     '@pinia/nuxt',
   ],

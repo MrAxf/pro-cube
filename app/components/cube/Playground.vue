@@ -1,6 +1,9 @@
 <template>
   <div class="flex size-full w-full flex-col overflow-hidden">
-    <div class="w-full grow">
+    <div class="relative w-full grow">
+      <GlowShine
+        class="top-1/4 h-1/2 w-1/2 [--glow-slide-from:30%] [--glow-slide-to:70%]"
+      />
       <Transition
         enter-active-class="transition-opacity duration-150 abslute inset-0"
         enter-from-class="opacity-0"

@@ -1,5 +1,5 @@
 <template>
-  <Dialog v-bind="forwarded">
+  <Dialog v-bind="forwarded" :close-disabled="isSubmitting">
     <DialogScrollContent
       class="flex max-h-[90dvh] grid-rows-[auto_minmax(0,1fr)_auto] flex-col overflow-hidden p-0 md:max-w-4xl"
     >
@@ -14,7 +14,11 @@
         </DialogDescription>
       </DialogHeader>
       <div class="overflow-y-auto px-6 py-4">
-        <CubeForm :default-values @submit="onSubmit" />
+        <CubeForm
+          :default-values="defaultValues"
+          :submitting="isSubmitting"
+          @submit="onSubmit"
+        />
       </div>
     </DialogScrollContent>
   </Dialog>
@@ -69,8 +73,11 @@ const { mutate } = useMutation(async (data: CubeForm) => {
   }
 })
 
+const isSubmitting = ref(false)
+
 async function onSubmit(data: CubeForm) {
   try {
+    isSubmitting.value = true
     let idx = 0
     if (props.cube) {
       idx = cubes.value!.findIndex((cube) => cube.id === props.cube!.id)
@@ -99,7 +106,6 @@ async function onSubmit(data: CubeForm) {
       dbCube!.data as Cube,
       ...cubes.value!.slice(idx + 1),
     ]
-    emits('update:open', false)
     if (props.cube) {
       toast('Cube updated successfully', {
         description: 'Your cube has been updated successfully.',
@@ -113,8 +119,11 @@ async function onSubmit(data: CubeForm) {
       })
       cubeStore.cube = dbCube!.data as Cube
     }
+    emits('update:open', false)
   } catch (error) {
     console.error(error)
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>

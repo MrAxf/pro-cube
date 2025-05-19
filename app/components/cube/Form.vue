@@ -18,6 +18,7 @@
             :model-value="field.state.value"
             type="text"
             placeholder="Enter a name"
+            :disabled="props.submitting"
             @update:model-value="(input) => field.handleChange(input as string)"
             @blur="field.handleBlur"
           />
@@ -47,76 +48,34 @@
               }
             "
           >
-            <div class="flex items-center space-x-2">
+            <div
+              v-for="size in sizes"
+              :key="size"
+              class="flex items-center space-x-2"
+            >
               <RadioGroupItem
-                :id="`${field.name}.2`"
-                :value="2"
-                class="sr-only"
+                :id="`${field.name}.${size}`"
+                :value="size"
+                class="peer sr-only"
+                :disabled="props.submitting"
               />
-              <Label :for="`${field.name}.2`">
+              <Label :for="`${field.name}.${size}`">
                 <Card
                   :class="[
                     'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground w-60 cursor-pointer transition-colors',
+                    'peer-disabled:opacity-50',
                     {
-                      'border-accent-foreground': field.state.value === 2,
+                      'border-accent-foreground': field.state.value === size,
                     },
                   ]"
                 >
                   <CardContent class="flex items-center justify-between gap-2">
-                    <CubeIcon class="size-20" :size="2" />
+                    <CubeIcon class="size-20" :size="size" />
                     <div class="flex flex-col gap-[1lh]">
-                      <span class="text-xl font-bold">2x2</span>
-                      <span>A 2x2 cube</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <RadioGroupItem
-                :id="`${field.name}.3`"
-                :value="3"
-                class="sr-only"
-              />
-              <Label :for="`${field.name}.3`">
-                <Card
-                  :class="[
-                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground w-60 cursor-pointer transition-colors',
-                    {
-                      'border-accent-foreground': field.state.value === 3,
-                    },
-                  ]"
-                >
-                  <CardContent class="flex items-center justify-between gap-2">
-                    <CubeIcon class="size-20" :size="3" />
-                    <div class="flex flex-col gap-[1lh]">
-                      <span class="text-xl font-bold">3x3</span>
-                      <span>A 3x3 cube</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <RadioGroupItem
-                :id="`${field.name}.4`"
-                :value="4"
-                class="sr-only"
-              />
-              <Label :for="`${field.name}.4`">
-                <Card
-                  :class="[
-                    'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 hover:border-accent-foreground w-60 cursor-pointer transition-colors',
-                    {
-                      'border-accent-foreground': field.state.value === 4,
-                    },
-                  ]"
-                >
-                  <CardContent class="flex items-center justify-between gap-2">
-                    <CubeIcon class="size-20" :size="4" />
-                    <div class="flex flex-col gap-[1lh]">
-                      <span class="text-xl font-bold">4x4</span>
-                      <span>A 4x4 cube</span>
+                      <span class="text-xl font-bold">{{
+                        `${size}x${size}`
+                      }}</span>
+                      <span>A {{ `${size}x${size}` }} cube</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -142,6 +101,7 @@
             :id="field.name"
             :name="field.name"
             :model-value="field.state.value"
+            :disabled="props.submitting"
             @update:model-value="
               (input) => {
                 field.handleChange(input as any)
@@ -169,6 +129,7 @@
               :id="field.name"
               :name="field.name"
               :model-value="field.state.value"
+              :disabled="props.submitting"
               @update:model-value="
                 (input) => {
                   field.handleChange(input as any)
@@ -195,6 +156,7 @@
               :id="field.name"
               :name="field.name"
               :model-value="field.state.value"
+              :disabled="props.submitting"
               @update:model-value="
                 (input) => {
                   field.handleChange(input as any)
@@ -221,6 +183,7 @@
               :id="field.name"
               :name="field.name"
               :model-value="field.state.value"
+              :disabled="props.submitting"
               @update:model-value="
                 (input) => {
                   field.handleChange(input as any)
@@ -247,6 +210,7 @@
               :id="field.name"
               :name="field.name"
               :model-value="field.state.value"
+              :disabled="props.submitting"
               @update:model-value="
                 (input) => {
                   field.handleChange(input as any)
@@ -273,6 +237,7 @@
               :id="field.name"
               :name="field.name"
               :model-value="field.state.value"
+              :disabled="props.submitting"
               @update:model-value="
                 (input) => {
                   field.handleChange(input as any)
@@ -299,6 +264,7 @@
               :id="field.name"
               :name="field.name"
               :model-value="field.state.value"
+              :disabled="props.submitting"
               @update:model-value="
                 (input) => {
                   field.handleChange(input as any)
@@ -311,15 +277,32 @@
       </form.Field>
     </div>
     <div class="flex w-full justify-end gap-8">
-      <Button type="button" variant="secondary" @click="form.reset()">
+      <Button
+        type="button"
+        variant="secondary"
+        :disabled="
+          form.state.isSubmitting || form.state.isValidating || props.submitting
+        "
+        @click="form.reset()"
+      >
         <Undo />
         Reset values
       </Button>
       <Button
         type="submit"
-        :disabled="form.state.isSubmitting || form.state.isValidating"
+        :disabled="
+          form.state.isSubmitting || form.state.isValidating || props.submitting
+        "
       >
-        <Save />
+        <Loader
+          v-if="
+            form.state.isSubmitting ||
+            form.state.isValidating ||
+            props.submitting
+          "
+          class="animate-spin"
+        />
+        <Save v-else />
         Save cube
       </Button>
     </div>
@@ -328,13 +311,15 @@
 
 <script setup lang="ts">
 import { useForm } from '@tanstack/vue-form'
-import { Save, Undo } from 'lucide-vue-next'
+import { Loader, Save, Undo } from 'lucide-vue-next'
 
 const props = withDefaults(
   defineProps<{
     defaultValues?: Partial<CubeForm>
+    submitting?: boolean
   }>(),
   {
+    submitting: false,
     defaultValues: () => ({}),
   }
 )
@@ -342,6 +327,8 @@ const props = withDefaults(
 const emit = defineEmits<{
   submit: [values: CubeForm]
 }>()
+
+const sizes = [2, 3, 4]
 
 const form = useForm({
   defaultValues: {

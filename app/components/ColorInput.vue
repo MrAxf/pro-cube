@@ -10,12 +10,12 @@
       :name="props.name"
       type="color"
       :disabled="props.disabled"
-      class="sr-only size-0"
+      class="peer sr-only size-0"
       v-bind="$attrs"
     />
     <Card
       :class="[
-        'h-9 w-full rounded-md bg-(--color-value) p-0 transition-colors',
+        'h-9 w-full rounded-md bg-(--color-value) p-0 transition-colors peer-disabled:opacity-50',
         {
           'cursor-not-allowed': props.disabled,
           'hover:border-accent-foreground cursor-pointer': !props.disabled,

@@ -34,8 +34,8 @@ export function provideCube({
   const history = ref<CubeHistory>([])
   const historyPointer = ref(0)
 
-  watchEffect(() => {
-    if (cube.value) {
+  watch(cube, (newCube, oldCube) => {
+    if (newCube && (!oldCube || newCube.id !== oldCube.id)) {
       history.value = []
       historyPointer.value = 0
     }
